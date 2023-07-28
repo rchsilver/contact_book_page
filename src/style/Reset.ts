@@ -17,7 +17,4 @@ export const Reset = createGlobalStyle`
             text-decoration: none;
         }
     }
-    #root{
-        margin:0 auto;
-    }
 `;
