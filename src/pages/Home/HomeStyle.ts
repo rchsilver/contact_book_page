@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import cover from "../../assets/cover/contactF.jpg";
+import cover from "../../assets/cover/cover.png";
 
 const HomeStyled = styled.main`
   display: flex;

@@ -18,6 +18,7 @@ const RegisterBtnStyle = styled.div`
     font-size: 1rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    cursor: pointer;
   }
   button:hover {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
