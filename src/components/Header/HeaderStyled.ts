@@ -9,6 +9,7 @@ const HeaderStyle = styled.header`
   padding: 1rem;
   background-color: var(--color-pink-00);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
   div {
     display: flex;
     background-color: var(--color-grey-00);
