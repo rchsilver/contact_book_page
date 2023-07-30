@@ -6,9 +6,9 @@ type TPropsButton = {
   secondText: string;
 };
 
-const PaperButton = ({ type, firstText, secondText }: TPropsButton) => {
+const PaperButton = ({ firstText, secondText }: TPropsButton) => {
   return (
-    <PaperButtonStyle type={type}>
+    <PaperButtonStyle>
       {firstText} <span>{secondText}</span>
     </PaperButtonStyle>
   );

@@ -4,7 +4,7 @@ type TPropsInput = {
   htmlFor: string;
   type: string;
   name: string;
-  register: any;
+  register: any | null;
 };
 
 const InputRegister = ({ htmlFor, type, name, register }: TPropsInput) => {

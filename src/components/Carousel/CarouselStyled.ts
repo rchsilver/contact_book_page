@@ -3,11 +3,14 @@ import { styled } from "styled-components";
 const CarouselStyle = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   div {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+    width: 50%;
   }
   .arrow {
     background-color: var(--color-grey-00);
@@ -26,6 +29,10 @@ const CarouselStyle = styled.section`
     gap: 1rem;
     overflow-x: auto;
     flex: none;
+    width: 50%;
+    height: 100%;
+    /* justify-content: center; */
+    align-items: center;
 
     li {
       border: none;

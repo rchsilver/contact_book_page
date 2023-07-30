@@ -5,6 +5,7 @@ import { Reset } from "./style/Reset.ts";
 import { GlobalStyle } from "./style/GlobalStyled.ts";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProviders } from "./providers/AuthProvider.tsx";
+import { ContactProviders } from "./providers/ContactProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <GlobalStyle />
     <BrowserRouter>
       <AuthProviders>
-        <App />
+        <ContactProviders>
+          <App />
+        </ContactProviders>
       </AuthProviders>
     </BrowserRouter>
   </React.StrictMode>
