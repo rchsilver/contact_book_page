@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 
 const HeaderStyle = styled.header`
+  z-index: 999;
   margin: 0;
   display: flex;
   justify-content: space-between;
@@ -10,6 +11,7 @@ const HeaderStyle = styled.header`
   background-color: var(--color-pink-00);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   position: fixed;
+  top: 0;
   div {
     display: flex;
     background-color: var(--color-grey-00);
