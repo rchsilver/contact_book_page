@@ -16,6 +16,5 @@ body {
 	--color-grey-00:#ffffff;
 	--color-grey-01:#e3fdf4;
 	--color-grey-09:#000000;
-
  }
 `;

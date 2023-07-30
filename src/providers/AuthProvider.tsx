@@ -28,15 +28,21 @@ const AuthProviders = ({ children }: TAuthProvidersProps) => {
   const signIn = async (data: loginData) => {
     try {
       const response = await api.post("/login", data);
-      const token = response.data;
+      const { token } = response.data;
+      const { id } = response.data;
+      console.log(token);
+
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      localStorage.setItem("@contactfile:token", token.token);
+
+      localStorage.setItem("@contactfile:token", token);
+      localStorage.setItem("@contactfile:id", id);
 
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
   };
+
   const registerClient = async (data: registerData) => {
     try {
       await api.post("/clients", data);
