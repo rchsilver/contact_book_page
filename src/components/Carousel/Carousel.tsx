@@ -16,28 +16,47 @@ const Carousel = ({ contacts }: TProps) => {
     setOpenCreateCont,
     openUpdateCont,
     setOpenUpdateCont,
+    setContactId,
+    setFullName,
+    setEmail,
+    setPhone,
   } = contactReq();
   const carousel = useRef(null);
 
   const handleLeftClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.preventDefault();
+    event.preventDefault();
     if (carousel.current) {
       carousel.current.scrollLeft -= carousel.current.offsetWidth;
     }
   };
 
   const handleRightClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.preventDefault();
+    event.preventDefault();
     if (carousel.current) {
       carousel.current.scrollLeft += carousel.current.offsetWidth;
     }
   };
 
   if (!contacts || !contacts.length) return null;
+
+  const clickInContact = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    setContactId(event.currentTarget.id);
+    const getContact = contacts.find(
+      (contact) => contact.id.toString() == event.currentTarget.id
+    );
+
+    setFullName(getContact!.fullName);
+    setEmail(getContact!.email);
+    setPhone(getContact!.phone);
+
+    setOpenUpdateCont(!openUpdateCont);
+  };
 
   return (
     <CarouselStyle>
@@ -46,7 +65,7 @@ const Carousel = ({ contacts }: TProps) => {
           <li
             key={contact.id}
             id={contact.id.toString()}
-            onClick={() => setOpenUpdateCont(!openUpdateCont)}
+            onClick={clickInContact}
           >
             <BsFillGearFill className="configIcon" />
             <h1>{contact.fullName}</h1>

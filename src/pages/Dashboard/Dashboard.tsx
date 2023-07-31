@@ -10,16 +10,22 @@ import { useAuth } from "../../hooks/useAuth";
 import { UpdateContactModal } from "../../components/Modals/UpdateContactModal/UpdateContactModal";
 
 const Dashboard = () => {
-  const [contacts, setContacts] = useState<TContacts>([]);
-  const { contact, openCreateCont, openUpdateCont } = contactReq();
+  const {
+    contact,
+    openCreateCont,
+    openUpdateCont,
+    contacts,
+    setContacts,
+    refresh,
+  } = contactReq();
   const { setPage } = useAuth();
 
-  useEffect(() => {
-    if (contact) {
-      const refresh = [...contacts, contact];
-      setContacts(refresh);
-    }
-  }, [contact]);
+  // useEffect(() => {
+  //   if (contact) {
+  //     const refresh = [...contacts, contact];
+  //     setContacts(refresh);
+  //   }
+  // }, [contact]);
 
   useEffect(() => {
     setPage("dashboard");
@@ -39,7 +45,7 @@ const Dashboard = () => {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [refresh]);
 
   return (
     <DashboardStyled>

@@ -13,6 +13,27 @@ const contactRequestSchema = contactShcema.omit({
   registrationDate: true,
 });
 
+const contactUpdateSchema = contactShcema
+  .omit({
+    id: true,
+    registrationDate: true,
+  })
+  .partial();
+
 const contactsSchema = contactShcema.array();
 
-export { contactShcema, contactsSchema, contactRequestSchema };
+const contactUdpateShcemaOmit = z.object({
+  fullName: z.string(),
+  email: z.string(),
+  phone: z.string(),
+});
+
+const contactSchemaRequestUpdate = contactUdpateShcemaOmit.partial();
+
+export {
+  contactShcema,
+  contactsSchema,
+  contactRequestSchema,
+  contactUpdateSchema,
+  contactSchemaRequestUpdate,
+};
