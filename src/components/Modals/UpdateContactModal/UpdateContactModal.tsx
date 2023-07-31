@@ -24,6 +24,7 @@ const UpdateContactModal = ({}: TModalProps) => {
     fullName,
     email,
     phone,
+    deleteContact,
   } = contactReq();
 
   const [showDeleteBtn, setShowDeleteBtn] = useState<boolean>(true);
@@ -31,6 +32,7 @@ const UpdateContactModal = ({}: TModalProps) => {
   const handleUpdateContact = (data: TContactRequest) => {
     updateContact(data, contactId);
   };
+
   return (
     <UpdateContactModalStyle>
       <form onSubmit={handleSubmit(handleUpdateContact)}>
@@ -87,7 +89,11 @@ const UpdateContactModal = ({}: TModalProps) => {
             >
               Não Não! <span>Não Delete!!!</span>
             </PaperButtonStyle>
-            <PaperButtonStyle type="button" className="yesDeleteBtn">
+            <PaperButtonStyle
+              onClick={() => deleteContact(contactId)}
+              type="button"
+              className="yesDeleteBtn"
+            >
               Quero Deletar<span>Sim!!!</span>
             </PaperButtonStyle>
           </div>

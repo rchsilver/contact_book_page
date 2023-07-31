@@ -41,6 +41,7 @@ type TContextValue = {
   setPhone: React.Dispatch<React.SetStateAction<string>>;
   refresh: number;
   setRefresh: React.Dispatch<React.SetStateAction<number>>;
+  deleteContact: (id: string) => Promise<void>;
 };
 
 const ContactContext = createContext({} as TContextValue);
@@ -85,6 +86,19 @@ const ContactProviders = ({ children }: TContactProvidersProps) => {
     }
   };
 
+  const deleteContact = async (id: string) => {
+    try {
+      const token = localStorage.getItem("@contactfile:token");
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      await api.delete(`/contacts/${id}`);
+      const getNumber = Math.floor(Math.random() * 100);
+      setOpenUpdateCont(!openUpdateCont);
+      setRefresh(getNumber);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ContactContext.Provider
       value={{
@@ -107,6 +121,7 @@ const ContactProviders = ({ children }: TContactProvidersProps) => {
         setPhone,
         refresh,
         setRefresh,
+        deleteContact,
       }}
     >
       {children}
