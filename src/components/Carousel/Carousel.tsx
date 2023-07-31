@@ -3,6 +3,7 @@ import { TContacts } from "../../interfaces/ContactTypes";
 import { PaperButtonStyle } from "../buttons/PaperButtons/PaperButton";
 import { CarouselStyle } from "./CarouselStyled";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { BsFillGearFill } from "react-icons/bs";
 import { useRef } from "react";
 
 type TProps = {
@@ -10,7 +11,12 @@ type TProps = {
 };
 
 const Carousel = ({ contacts }: TProps) => {
-  const { openCreateCont, setOpenCreateCont } = contactReq();
+  const {
+    openCreateCont,
+    setOpenCreateCont,
+    openUpdateCont,
+    setOpenUpdateCont,
+  } = contactReq();
   const carousel = useRef(null);
 
   const handleLeftClick = (
@@ -37,7 +43,12 @@ const Carousel = ({ contacts }: TProps) => {
     <CarouselStyle>
       <ul ref={carousel}>
         {contacts.map((contact) => (
-          <li key={contact.id}>
+          <li
+            key={contact.id}
+            id={contact.id.toString()}
+            onClick={() => setOpenUpdateCont(!openUpdateCont)}
+          >
+            <BsFillGearFill className="configIcon" />
             <h1>{contact.fullName}</h1>
             <p>{contact.email}</p>
             <p>{contact.phone}</p>

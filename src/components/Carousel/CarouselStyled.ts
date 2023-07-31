@@ -28,7 +28,7 @@ const CarouselStyle = styled.section`
     display: flex;
     gap: 1rem;
     overflow-x: auto;
-    flex: none;
+
     width: 100%;
     max-width: 50vw;
     height: fit-content;
@@ -41,11 +41,40 @@ const CarouselStyle = styled.section`
     align-items: center;
 
     li {
+      display: flex;
+      flex-direction: column;
       border: none;
       background-color: var(--color-grey-00);
       padding: 1rem;
+      min-width: 200px;
+      width: 50%;
+      height: 99%;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       font-family: "Cedarville Cursive", cursive !important;
+      position: relative;
+      overflow: hidden;
+      gap: 5px;
+      .configIcon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 1rem;
+        color: var(--color-grey-00);
+      }
+      h1 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+    li:hover .configIcon {
+      color: var(--color-grey-09);
+    }
+    li:hover {
+      cursor: pointer;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     }
   }
 

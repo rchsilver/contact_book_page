@@ -7,10 +7,11 @@ import { Carousel } from "../../components/Carousel/Carousel";
 import { CreateContactModal } from "../../components/Modals/CreateContactModal/CreateContactModal";
 import { contactReq } from "../../hooks/contactReq";
 import { useAuth } from "../../hooks/useAuth";
+import { UpdateContactModal } from "../../components/Modals/UpdateContactModal/UpdateContactModal";
 
 const Dashboard = () => {
   const [contacts, setContacts] = useState<TContacts>([]);
-  const { contact, openCreateCont } = contactReq();
+  const { contact, openCreateCont, openUpdateCont } = contactReq();
   const { setPage } = useAuth();
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Dashboard = () => {
       <Header />
       <Carousel contacts={contacts} />
       {openCreateCont ? <CreateContactModal /> : null}
+      {openUpdateCont ? <UpdateContactModal /> : null}
     </DashboardStyled>
   );
 };
