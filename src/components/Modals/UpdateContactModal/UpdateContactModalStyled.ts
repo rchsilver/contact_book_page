@@ -39,6 +39,40 @@ const UpdateContactModalStyle = styled.section`
       border: 1px solid var(--color-grey-09);
       cursor: pointer;
     }
+    .deleteBox {
+      display: flex;
+      gap: 0.5rem;
+      .noDeleteBtn {
+        color: var(--color-yelow-00);
+        background-color: var(--color-pink-00);
+
+        span {
+          color: var(--color-yelow-00);
+        }
+        &:hover {
+          background-color: var(--color-yelow-00);
+          color: var(--color-pink-00);
+          span {
+            color: var(--color-pink-00);
+          }
+        }
+      }
+      .yesDeleteBtn {
+        color: var(--color-pink-00);
+        background-color: var(--color-grey-00);
+
+        span {
+          color: var(--color-pink-00);
+        }
+        &:hover {
+          background-color: var(--color-yelow-00);
+          color: var(--color-pink-00);
+          span {
+            color: var(--color-pink-00);
+          }
+        }
+      }
+    }
   }
 `;
 
