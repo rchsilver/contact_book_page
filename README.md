@@ -6,7 +6,7 @@ Front-End do projeto full-stack ContacFile, um gerenciador de contatos.
 
 ```bash
 
-$ npm run dev
+npm run dev
 ```
 
 Currently, two official plugins are available:
