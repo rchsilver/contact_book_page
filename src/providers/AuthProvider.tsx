@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { loginData } from "../interfaces/LoginTypes";
 import { api } from "../service/api";
 import { useNavigate } from "react-router-dom";
@@ -11,12 +11,16 @@ type TAuthProvidersProps = {
 type TAuthContextValues = {
   signIn: (data: loginData) => Promise<void>;
   registerClient: (data: registerData) => Promise<void>;
+  page: string;
+  setPage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const AuthContext = createContext({} as TAuthContextValues);
 
 const AuthProviders = ({ children }: TAuthProvidersProps) => {
   const navigate = useNavigate();
+  const [page, setPage] = useState<string>("home");
+
   useEffect(() => {
     const token = localStorage.getItem("@contactfile:token");
     if (!token) {
@@ -54,7 +58,7 @@ const AuthProviders = ({ children }: TAuthProvidersProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, registerClient }}>
+    <AuthContext.Provider value={{ signIn, registerClient, page, setPage }}>
       {children}
     </AuthContext.Provider>
   );

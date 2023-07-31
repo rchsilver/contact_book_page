@@ -6,7 +6,7 @@ const CarouselStyle = styled.section`
   justify-content: center;
   align-items: center;
 
-  div {
+  .boxArrows {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
@@ -29,8 +29,14 @@ const CarouselStyle = styled.section`
     gap: 1rem;
     overflow-x: auto;
     flex: none;
-    width: 50%;
-    height: 100%;
+    width: 100%;
+    max-width: 50vw;
+    height: fit-content;
+    max-height: 50vw;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     /* justify-content: center; */
     align-items: center;
 
@@ -41,6 +47,12 @@ const CarouselStyle = styled.section`
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       font-family: "Cedarville Cursive", cursive !important;
     }
+  }
+
+  .boxBtnCreate {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
   }
 `;
 

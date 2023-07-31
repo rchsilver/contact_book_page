@@ -4,8 +4,9 @@ import { CreateContactModalStyle } from "./CreateContactModalStyled";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TContactRequest } from "../../../interfaces/ContactTypes";
 import { contactRequestSchema } from "../../../schemas/ContactSchemas";
-import { PaperButton } from "../../buttons/PaperButtons/PaperButton";
 import { contactReq } from "../../../hooks/contactReq";
+import { CloseButton } from "../../buttons/CloseButton/CloseButton";
+import { PaperButtonStyle } from "../../buttons/PaperButtons/PaperButton";
 
 type TModalProps = {};
 
@@ -13,11 +14,17 @@ const CreateContactModal = ({}: TModalProps) => {
   const { register, handleSubmit } = useForm<TContactRequest>({
     resolver: zodResolver(contactRequestSchema),
   });
-  const { createContact } = contactReq();
+  const { createContact, openCreateCont, setOpenCreateCont } = contactReq();
 
   return (
     <CreateContactModalStyle>
       <form onSubmit={handleSubmit(createContact)}>
+        <CloseButton
+          className="closeBtn"
+          onClick={() => setOpenCreateCont(!openCreateCont)}
+        >
+          Fechar
+        </CloseButton>
         <InputRegister
           htmlFor="fullName"
           type="text"
@@ -36,7 +43,9 @@ const CreateContactModal = ({}: TModalProps) => {
           name="O número é"
           register={register("phone")}
         />
-        <PaperButton firstText="Criar" secondText="Contato" type="submit" />
+        <PaperButtonStyle className="registerBtn">
+          Criar <span>Contato</span>
+        </PaperButtonStyle>
       </form>
     </CreateContactModalStyle>
   );

@@ -5,12 +5,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginShcema } from "../../schemas/LoginSchema";
 import { useAuth } from "../../hooks/useAuth";
 import { Header } from "../../components/Header/Header";
+import { useEffect } from "react";
 
 const Login = () => {
   const { register, handleSubmit } = useForm<loginData>({
     resolver: zodResolver(loginShcema),
   });
-  const { signIn } = useAuth();
+
+  const { signIn, setPage } = useAuth();
+
+  useEffect(() => {
+    setPage("login");
+  }, []);
   return (
     <LoginStyle>
       <Header />

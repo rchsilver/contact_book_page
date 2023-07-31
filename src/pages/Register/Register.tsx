@@ -7,12 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../../hooks/useAuth";
 import { registerShcema } from "../../schemas/RegisterSchema";
 import { registerData } from "../../interfaces/RegisterTypes";
+import { useEffect } from "react";
 
 const Registe = () => {
   const { register, handleSubmit } = useForm<registerData>({
     resolver: zodResolver(registerShcema),
   });
-  const { registerClient } = useAuth();
+
+  const { registerClient, setPage } = useAuth();
+
+  useEffect(() => {
+    setPage("home");
+  }, []);
   return (
     <RegisterStyle>
       <section>

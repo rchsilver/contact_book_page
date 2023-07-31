@@ -8,6 +8,7 @@ const DashboardStyled = styled.main`
   height: 100vh;
   width: 100vw;
   background-color: var(--color-pastel-00);
+  overflow: hidden;
 `;
 
 export { DashboardStyled };

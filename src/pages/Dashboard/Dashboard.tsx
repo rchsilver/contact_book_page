@@ -6,20 +6,22 @@ import { api } from "../../service/api";
 import { Carousel } from "../../components/Carousel/Carousel";
 import { CreateContactModal } from "../../components/Modals/CreateContactModal/CreateContactModal";
 import { contactReq } from "../../hooks/contactReq";
+import { useAuth } from "../../hooks/useAuth";
 
 const Dashboard = () => {
   const [contacts, setContacts] = useState<TContacts>([]);
-  const { contact } = contactReq();
+  const { contact, openCreateCont } = contactReq();
+  const { setPage } = useAuth();
 
   useEffect(() => {
     if (contact) {
-      let addContacts = contacts;
-      addContacts.push(contact);
-      setContacts(addContacts);
+      const refresh = [...contacts, contact];
+      setContacts(refresh);
     }
   }, [contact]);
 
   useEffect(() => {
+    setPage("dashboard");
     try {
       const token = localStorage.getItem("@contactfile:token");
       const id = localStorage.getItem("@contactfile:id");
@@ -42,7 +44,7 @@ const Dashboard = () => {
     <DashboardStyled>
       <Header />
       <Carousel contacts={contacts} />
-      <CreateContactModal />
+      {openCreateCont ? <CreateContactModal /> : null}
     </DashboardStyled>
   );
 };

@@ -6,7 +6,7 @@ const InputRegisterStyle = styled.div`
   label {
     font-family: "Cedarville Cursive", cursive !important;
     font-size: 1rem;
-    color: var(--color-grey-09);
+    color: var(--color-pink-00);
   }
   input {
     font-family: "Cedarville Cursive", cursive !important;
