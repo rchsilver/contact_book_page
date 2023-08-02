@@ -2,11 +2,28 @@
 
 Front-End do projeto full-stack ContacFile, um gerenciador de contatos.
 
-## Running the app
+## Installation NPM
 
 ```bash
+npm install
+```
 
+## Installation YARN
+
+```bash
+yarn
+```
+
+## Running the app NPM
+
+```bash
 npm run dev
+```
+
+## Running the app YARN
+
+```bash
+yarn dev
 ```
 
 Currently, two official plugins are available:
