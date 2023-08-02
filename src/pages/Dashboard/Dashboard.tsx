@@ -8,24 +8,13 @@ import { CreateContactModal } from "../../components/Modals/CreateContactModal/C
 import { contactReq } from "../../hooks/contactReq";
 import { useAuth } from "../../hooks/useAuth";
 import { UpdateContactModal } from "../../components/Modals/UpdateContactModal/UpdateContactModal";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const {
-    contact,
-    openCreateCont,
-    openUpdateCont,
-    contacts,
-    setContacts,
-    refresh,
-  } = contactReq();
+  const { openCreateCont, openUpdateCont, contacts, setContacts, refresh } =
+    contactReq();
   const { setPage } = useAuth();
-
-  // useEffect(() => {
-  //   if (contact) {
-  //     const refresh = [...contacts, contact];
-  //     setContacts(refresh);
-  //   }
-  // }, [contact]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage("dashboard");
@@ -40,12 +29,19 @@ const Dashboard = () => {
         });
 
         setContacts(response.data);
-        console.log(contacts);
       })();
     } catch (error) {
       console.error(error);
     }
   }, [refresh]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("@contactfile:token");
+
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <DashboardStyled>

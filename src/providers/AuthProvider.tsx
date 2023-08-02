@@ -13,6 +13,7 @@ type TAuthContextValues = {
   registerClient: (data: registerData) => Promise<void>;
   page: string;
   setPage: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
 };
 
 const AuthContext = createContext({} as TAuthContextValues);
@@ -20,6 +21,7 @@ const AuthContext = createContext({} as TAuthContextValues);
 const AuthProviders = ({ children }: TAuthProvidersProps) => {
   const navigate = useNavigate();
   const [page, setPage] = useState<string>("home");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("@contactfile:token");
@@ -57,8 +59,22 @@ const AuthProviders = ({ children }: TAuthProvidersProps) => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("@contactfile:token");
+
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    setLoading(true);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ signIn, registerClient, page, setPage }}>
+    <AuthContext.Provider
+      value={{ signIn, registerClient, page, setPage, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );

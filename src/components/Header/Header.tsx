@@ -4,6 +4,10 @@ import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
   const { page } = useAuth();
+  const removeToken = () => {
+    localStorage.removeItem("@contactfile:token");
+    localStorage.removeItem("@contactfile:id");
+  };
   return (
     <HeaderStyle>
       <div>
@@ -20,7 +24,7 @@ const Header = () => {
       ) : null}
       {page === "dashboard" ? (
         <Link to="/">
-          <div>
+          <div onClick={removeToken}>
             <h2>Sair da </h2>
             <span className="accountSpan">conta!</span>
           </div>

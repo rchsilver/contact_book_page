@@ -1,10 +1,10 @@
+import React, { useRef } from "react";
 import { contactReq } from "../../hooks/contactReq";
 import { TContacts } from "../../interfaces/ContactTypes";
 import { PaperButtonStyle } from "../buttons/PaperButtons/PaperButton";
 import { CarouselStyle } from "./CarouselStyled";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { BsFillGearFill } from "react-icons/bs";
-import { useRef } from "react";
 
 type TProps = {
   contacts: TContacts;
@@ -21,7 +21,7 @@ const Carousel = ({ contacts }: TProps) => {
     setEmail,
     setPhone,
   } = contactReq();
-  const carousel = useRef(null);
+  const carousel = useRef<HTMLUListElement>(null);
 
   const handleLeftClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
