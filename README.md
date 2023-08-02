@@ -1,6 +1,13 @@
-# React + TypeScript + Vite
+# ContactFile - Entrega Full-Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Front-End do projeto full-stack ContacFile, um gerenciador de contatos.
+
+## Running the app
+
+```bash
+
+npm run dev
+```
 
 Currently, two official plugins are available:
 
