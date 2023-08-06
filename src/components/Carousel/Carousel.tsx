@@ -41,7 +41,7 @@ const Carousel = ({ contacts }: TProps) => {
     }
   };
 
-  if (!contacts || !contacts.length) return null;
+  // if (!contacts || !contacts.length) return null;
 
   const clickInContact = (
     event: React.MouseEvent<HTMLLIElement, MouseEvent>
@@ -74,10 +74,12 @@ const Carousel = ({ contacts }: TProps) => {
           </li>
         ))}
       </ul>
-      <div className="boxArrows">
-        <AiOutlineArrowLeft onClick={handleLeftClick} className="arrow" />
-        <AiOutlineArrowRight onClick={handleRightClick} className="arrow" />
-      </div>
+      {contacts.length > 0 ? (
+        <div className="boxArrows">
+          <AiOutlineArrowLeft onClick={handleLeftClick} className="arrow" />
+          <AiOutlineArrowRight onClick={handleRightClick} className="arrow" />
+        </div>
+      ) : null}
       <div className="boxBtnCreate">
         <PaperButtonStyle
           onClick={() => setOpenCreateCont(!openCreateCont)}

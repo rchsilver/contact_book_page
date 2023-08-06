@@ -6,6 +6,7 @@ import { loginShcema } from "../../schemas/LoginSchema";
 import { useAuth } from "../../hooks/useAuth";
 import { Header } from "../../components/Header/Header";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit } = useForm<loginData>({
@@ -13,10 +14,16 @@ const Login = () => {
   });
 
   const { signIn, setPage } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPage("login");
+    const token = localStorage.getItem("@contactfile:token");
+    if (token) {
+      navigate("/dashboard");
+    }
   }, []);
+
   return (
     <LoginStyle>
       <Header />

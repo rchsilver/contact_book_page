@@ -9,11 +9,14 @@ import { contactReq } from "../../hooks/contactReq";
 import { useAuth } from "../../hooks/useAuth";
 import { UpdateContactModal } from "../../components/Modals/UpdateContactModal/UpdateContactModal";
 import { useNavigate } from "react-router-dom";
+import { UpdateUserModal } from "../../components/Modals/UpdateUserModal/UpdateUserModal";
+import { userReq } from "../../hooks/userReq";
 
 const Dashboard = () => {
   const { openCreateCont, openUpdateCont, contacts, setContacts, refresh } =
     contactReq();
   const { setPage } = useAuth();
+  const { openUpdateUser, getUser } = userReq();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +24,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("@contactfile:token");
       const id = localStorage.getItem("@contactfile:id");
+      getUser();
       (async () => {
         const response = await api.get<TContacts>(`contacts/get/${id}`, {
           headers: {
@@ -49,6 +53,7 @@ const Dashboard = () => {
       <Carousel contacts={contacts} />
       {openCreateCont ? <CreateContactModal /> : null}
       {openUpdateCont ? <UpdateContactModal /> : null}
+      {openUpdateUser ? <UpdateUserModal /> : null}
     </DashboardStyled>
   );
 };

@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeaderStyle } from "./HeaderStyled";
 import { useAuth } from "../../hooks/useAuth";
+import { userReq } from "../../hooks/userReq";
 
 const Header = () => {
   const { page } = useAuth();
@@ -8,9 +9,11 @@ const Header = () => {
     localStorage.removeItem("@contactfile:token");
     localStorage.removeItem("@contactfile:id");
   };
+  const { openUpdateUser, setOpenUpdateUser } = userReq();
+  const navigate = useNavigate();
   return (
     <HeaderStyle>
-      <div>
+      <div onClick={() => navigate("/")}>
         <h2>Contact</h2>
         <span>File</span>
       </div>
@@ -22,14 +25,6 @@ const Header = () => {
           </div>
         </Link>
       ) : null}
-      {page === "dashboard" ? (
-        <Link to="/">
-          <div onClick={removeToken}>
-            <h2>Sair da </h2>
-            <span className="accountSpan">conta!</span>
-          </div>
-        </Link>
-      ) : null}
       {page === "login" ? (
         <Link to="/register">
           <div>
@@ -37,6 +32,20 @@ const Header = () => {
             <span className="accountSpan">uma conta!</span>
           </div>
         </Link>
+      ) : null}
+      {page === "dashboard" ? (
+        <section className="boxDashRightBtns">
+          <div onClick={() => setOpenUpdateUser(!openUpdateUser)}>
+            <h2>Editar </h2>
+            <span className="accountSpan">Perfil</span>
+          </div>
+          <Link to="/">
+            <div onClick={removeToken}>
+              <h2>Sair da </h2>
+              <span className="accountSpan">conta!</span>
+            </div>
+          </Link>
+        </section>
       ) : null}
     </HeaderStyle>
   );

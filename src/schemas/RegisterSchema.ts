@@ -7,4 +7,17 @@ const registerShcema = z.object({
   password: z.string().nonempty("Senha é obrigatória"),
 });
 
-export { registerShcema };
+const updateUserSchema = z.object({
+  id: z.number(),
+  fullName: z.string(),
+  email: z.string().email("Formato de e-mail inválido!"),
+  phone: z.string(),
+  registrationDate: z.string().or(z.date()).optional(),
+});
+
+const updateUserSchemaReq = updateUserSchema.omit({
+  id: true,
+  registrationDate: true,
+});
+
+export { registerShcema, updateUserSchema, updateUserSchemaReq };

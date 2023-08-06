@@ -1,2 +1,0 @@
-const RegisterModal = () => {};
-export { RegisterModal };

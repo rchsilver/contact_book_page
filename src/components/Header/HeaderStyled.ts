@@ -42,6 +42,10 @@ const HeaderStyle = styled.header`
       color: var(--color-pink-00);
     }
   }
+  .boxDashRightBtns {
+    display: flex;
+    gap: 15px;
+  }
 `;
 
 export { HeaderStyle };

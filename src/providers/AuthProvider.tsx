@@ -36,7 +36,6 @@ const AuthProviders = ({ children }: TAuthProvidersProps) => {
       const response = await api.post("/login", data);
       const { token } = response.data;
       const { id } = response.data;
-      console.log(token);
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
@@ -68,7 +67,7 @@ const AuthProviders = ({ children }: TAuthProvidersProps) => {
     }
 
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
-    setLoading(true);
+    setLoading(false);
   }, []);
 
   return (
